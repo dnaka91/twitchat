@@ -1,0 +1,60 @@
+@charset "utf-8";
+
+body {
+  font-family: Helvetica, Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+.status {
+  position: fixed;
+  top: 0;
+
+  display: block;
+  width: 100%;
+  height: 6px;
+}
+
+.is-success {
+  background-color: #34ff34;
+}
+
+.is-warning {
+  background-color: #ffd724;
+}
+
+.is-danger {
+  background-color: #ff2d2d;
+}
+
+img {
+  margin: -5px 2px;
+  position: relative;
+  vertical-align: middle;
+}
+
+.messages {
+  margin: 6px;
+
+  &.color-white .msg {
+    color: white;
+  }
+
+  &.color-black .msg {
+    color: black;
+  }
+}
+
+.msg {
+  min-height: 30px;
+
+  // username
+  span:nth-child(1) {
+    font-weight: bold;
+  }
+
+  // colon character
+  span:nth-child(2) {
+    margin-right: 2px;
+  }
+}
