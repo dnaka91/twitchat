@@ -5,12 +5,14 @@ use crate::models::Color;
 
 pub struct Container {
     props: Props,
+    style: String,
 }
 
 #[derive(Clone, PartialEq, Properties)]
 pub struct Props {
     pub children: Children,
     pub color: Color,
+    pub font_size: f32,
 }
 
 impl Component for Container {
@@ -18,7 +20,10 @@ impl Component for Container {
     type Properties = Props;
 
     fn create(props: Self::Properties, _link: ComponentLink<Self>) -> Self {
-        Self { props }
+        Self {
+            props,
+            style: String::new(),
+        }
     }
 
     fn update(&mut self, _msg: Self::Message) -> ShouldRender {
@@ -26,7 +31,12 @@ impl Component for Container {
     }
 
     fn change(&mut self, props: Self::Properties) -> ShouldRender {
-        self.props.neq_assign(props)
+        if self.props.neq_assign(props) {
+            self.style = format!("font-size:{:.1}px;", self.props.font_size);
+            true
+        } else {
+            false
+        }
     }
 
     fn view(&self) -> Html {
@@ -36,7 +46,7 @@ impl Component for Container {
         };
 
         html! {
-            <div class=("messages", color_class)>
+            <div class=("messages", color_class), style=&self.style>
                 { for self.props.children.iter() }
             </div>
         }

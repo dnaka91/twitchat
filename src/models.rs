@@ -22,6 +22,13 @@ pub struct Options {
     pub color: Color,
     #[serde(default, deserialize_with = "crate::de::string_list")]
     pub channels: Vec<String>,
+    #[serde(default = "default_font_size")]
+    pub font_size: f32,
+}
+
+#[inline(always)]
+fn default_font_size() -> f32 {
+    16.0
 }
 
 #[derive(Clone, PartialEq)]

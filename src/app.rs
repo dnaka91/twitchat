@@ -138,12 +138,15 @@ impl Component for App {
         });
 
         html! {
-            <div>
+            <>
                 <Status status=self.status.clone() />
-                <Container color=self.options.color>
+                <Container
+                    color=self.options.color
+                    font_size=self.options.font_size
+                >
                     { for lines }
                 </Container>
-            </div>
+            </>
         }
     }
 }
