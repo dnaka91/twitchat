@@ -35,6 +35,10 @@ img {
 
 .messages {
   margin: 6px;
+  position: absolute;
+  width: calc(100% - 12px);
+  height: calc(100% - 12px);
+  overflow: hidden;
 
   &.color-white .msg {
     color: white;
