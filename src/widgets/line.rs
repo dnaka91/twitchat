@@ -85,10 +85,7 @@ impl Component for Line {
             let h = html! {
                 <>
                 <span>{msg}</span>
-                <img
-                    srcset={srcset}
-                    width="28"
-                    height="28" />
+                <img srcset={srcset} />
                 </>
             };
 
