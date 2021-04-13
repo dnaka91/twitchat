@@ -28,7 +28,7 @@ body {
 }
 
 img {
-  margin: -5px 2px;
+  margin-top: -5px;
   position: relative;
   vertical-align: middle;
 }
@@ -50,7 +50,8 @@ img {
 }
 
 .msg {
-  min-height: 30px;
+  line-height: 16px;
+  padding: 3px;
 
   // username
   span:nth-child(1) {
