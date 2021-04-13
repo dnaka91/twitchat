@@ -26,8 +26,8 @@ pub struct Options {
     pub font_size: f32,
 }
 
-#[inline(always)]
-fn default_font_size() -> f32 {
+#[inline]
+const fn default_font_size() -> f32 {
     16.0
 }
 
@@ -51,7 +51,7 @@ pub fn parse_message(message: Message) -> Option<TwitchMessage> {
 
     match message.command {
         Command::PRIVMSG(_, content) => {
-            if content.contains(|c: char| c.is_control()) {
+            if content.contains(char::is_control) {
                 return None;
             }
 
@@ -62,7 +62,7 @@ pub fn parse_message(message: Message) -> Option<TwitchMessage> {
                 },
                 username: match message.prefix? {
                     Prefix::Nickname(_, username, _) => username,
-                    _ => return None,
+                    Prefix::ServerName(_) => return None,
                 },
                 message: content,
                 color: tags
@@ -98,14 +98,11 @@ fn parse_emotes(tag: &str) -> Vec<Emote2> {
             let id = parts.next()?.parse().ok()?;
             let ranges = parts.next()?;
 
-            let emote = ranges
-                .split(',')
-                .filter_map(|range| {
-                    let mut parts = range.splitn(2, '-');
-                    let start = parts.next()?.parse().ok()?;
-                    Some(start)
-                })
-                .map(move |location| Emote2 { id, location });
+            let emote = ranges.split(',').filter_map(move |range| {
+                let mut parts = range.splitn(2, '-');
+                let location = parts.next()?.parse().ok()?;
+                Some(Emote2 { id, location })
+            });
 
             Some(emote)
         })

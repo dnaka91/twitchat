@@ -1,0 +1,16 @@
+[licenses]
+allow = [
+    "Apache-2.0",
+    "CC0-1.0",
+    "MIT",
+    "MPL-2.0",
+]
+exceptions = [
+    { name = "twitchat", allow = ["AGPL-3.0"] },
+]
+
+[bans]
+wildcards = "deny"
+skip = [
+    { name = "cfg-if", version = "=0.1.10" },
+]

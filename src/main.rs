@@ -1,4 +1,6 @@
-#![deny(rust_2018_idioms, clippy::all)]
+#![deny(rust_2018_idioms, clippy::all, clippy::pedantic)]
+#![warn(clippy::nursery)]
+#![allow(clippy::default_trait_access)]
 #![recursion_limit = "256"]
 
 mod app;
