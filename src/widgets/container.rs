@@ -46,7 +46,7 @@ impl Component for Container {
         };
 
         html! {
-            <div class=("messages", color_class), style=&self.style>
+            <div class=classes!("messages", color_class) style=self.style.clone()>
                 { for self.props.children.iter() }
             </div>
         }

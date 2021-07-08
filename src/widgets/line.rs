@@ -1,3 +1,5 @@
+use std::rc::Rc;
+
 use yew::prelude::*;
 use yewtil::NeqAssign;
 
@@ -9,7 +11,7 @@ pub struct Line {
 
 #[derive(Clone, PartialEq, Properties)]
 pub struct Props {
-    pub message: Privmsg,
+    pub message: Rc<Privmsg>,
 }
 
 impl Component for Line {

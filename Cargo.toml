@@ -5,15 +5,15 @@ authors = ["Dominik Nakamura <dnaka91@gmail.com>"]
 edition = "2018"
 
 [dependencies]
-anyhow = "1.0.40"
+anyhow = "1.0.41"
 console_error_panic_hook = "0.1.6"
 console_log = "0.2.0"
 irc-proto = { version = "0.15.0", default-features = false }
 log = { version = "0.4.14", features = ["release_max_level_info"] }
-serde = { version = "1.0.125", features = ["derive"] }
-serde_qs = "0.8.3"
-yew = "0.17.4"
-yewtil = "0.3.2"
+serde = { version = "1.0.126", features = ["derive"] }
+serde_qs = "0.8.4"
+yew = "0.18.0"
+yewtil = "0.4.0"
 
 [profile.release]
 codegen-units = 1

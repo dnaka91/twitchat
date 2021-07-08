@@ -18,7 +18,7 @@ const BUFFER_SIZE: usize = 50;
 pub struct App {
     link: ComponentLink<Self>,
     task: Option<WebSocketTask>,
-    messages: VecDeque<Privmsg>,
+    messages: VecDeque<Rc<Privmsg>>,
     status: WebSocketStatus,
     scroll: bool,
     options: Options,
@@ -82,7 +82,7 @@ impl Component for App {
                                     self.messages.pop_front();
                                 }
 
-                                self.messages.push_back(pm);
+                                self.messages.push_back(Rc::new(pm));
                                 self.scroll = true;
                             }
                             Ok(TwitchMessage::Ping(sender)) => self
@@ -133,7 +133,7 @@ impl Component for App {
 
         let lines = self.messages.iter().map(|msg| {
             html! {
-                <Line message=msg key=Rc::clone(&msg.id) />
+                <Line message=Rc::clone(msg) key=Rc::clone(&msg.id) />
             }
         });
 

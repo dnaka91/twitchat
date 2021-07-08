@@ -35,7 +35,7 @@ impl Component for Status {
         };
 
         html! {
-            <div class=("status", status_color)></div>
+            <div class=classes!("status", status_color)></div>
         }
     }
 }

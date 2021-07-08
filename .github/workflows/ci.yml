@@ -33,7 +33,7 @@ jobs:
           rm -rf trunk.tar.gz trunk
       - name: Install wasm-bindgen-cli
         env:
-          VERSION: 0.2.73
+          VERSION: 0.2.74
         run: |
           cd /tmp
           curl -Lo wasm-bindgen.tar.gz https://github.com/rustwasm/wasm-bindgen/releases/download/${VERSION}/wasm-bindgen-${VERSION}-x86_64-unknown-linux-musl.tar.gz

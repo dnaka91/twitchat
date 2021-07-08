@@ -39,7 +39,7 @@ pub enum TwitchMessage {
 
 #[derive(Clone, PartialEq)]
 pub struct Privmsg {
-    pub id: Rc<String>,
+    pub id: Rc<str>,
     pub username: String,
     pub message: String,
     pub color: Option<String>,
@@ -57,7 +57,7 @@ pub fn parse_message(message: Message) -> Option<TwitchMessage> {
 
             Some(TwitchMessage::Privmsg(Privmsg {
                 id: match tags.iter().find(|t| t.0 == "id").and_then(|t| t.1.clone()) {
-                    Some(id) => Rc::new(id),
+                    Some(id) => Rc::from(id),
                     None => return None,
                 },
                 username: match message.prefix? {
