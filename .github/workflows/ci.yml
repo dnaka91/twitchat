@@ -14,41 +14,20 @@ jobs:
         uses: actions-rs/toolchain@v1
         with:
           profile: minimal
+          target: wasm32-unknown-unknown
           toolchain: stable
           override: true
-      - name: Add wasm target
-        run: rustup target add wasm32-unknown-unknown
+      - name: Configure cache
+        uses: Swatinem/rust-cache@v1
       - name: Prepare binary folder
         run: |
           mkdir -p $HOME/.local/bin
           echo "$HOME/.local/bin" >> $GITHUB_PATH
       - name: Install trunk
-        env:
-          VERSION: 0.10.0
         run: |
           cd /tmp
-          curl -Lo trunk.tar.gz https://github.com/thedodd/trunk/releases/download/v${VERSION}/trunk-x86_64-unknown-linux-gnu.tar.gz
-          tar -xvf trunk.tar.gz
-          cp trunk $HOME/.local/bin
-          rm -rf trunk.tar.gz trunk
-      - name: Install wasm-bindgen-cli
-        env:
-          VERSION: 0.2.74
-        run: |
-          cd /tmp
-          curl -Lo wasm-bindgen.tar.gz https://github.com/rustwasm/wasm-bindgen/releases/download/${VERSION}/wasm-bindgen-${VERSION}-x86_64-unknown-linux-musl.tar.gz
-          tar -xvf wasm-bindgen.tar.gz
-          cp wasm-bindgen-${VERSION}-x86_64-unknown-linux-musl/wasm-bindgen $HOME/.local/bin
-          rm -rf wasm-bindgen.tar.gz wasm-bindgen-${VERSION}-x86_64-unknown-linux-musl
-      - name: Install wasm-opt
-        env:
-          VERSION: 100
-        run: |
-          cd /tmp
-          curl -Lo binaryen.tar.gz https://github.com/WebAssembly/binaryen/releases/download/version_${VERSION}/binaryen-version_${VERSION}-x86_64-linux.tar.gz
-          tar -xvf binaryen.tar.gz
-          cp binaryen-version_${VERSION}/bin/wasm-opt $HOME/.local/bin
-          rm -rf binaryen.tar.gz binaryen-version_${VERSION}
+          curl -Lo- https://github.com/thedodd/trunk/releases/download/v0.13.1/trunk-x86_64-unknown-linux-gnu.tar.gz | tar -xz
+          mv trunk $HOME/.local/bin/
       - name: Clean dist folder
         run: trunk clean
       - name: Build website
