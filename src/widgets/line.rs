@@ -1,13 +1,10 @@
 use std::rc::Rc;
 
 use yew::prelude::*;
-use yewtil::NeqAssign;
 
 use crate::models::Privmsg;
 
-pub struct Line {
-    props: Props,
-}
+pub struct Line;
 
 #[derive(Clone, PartialEq, Properties)]
 pub struct Props {
@@ -18,28 +15,22 @@ impl Component for Line {
     type Message = ();
     type Properties = Props;
 
-    fn create(props: Self::Properties, _link: ComponentLink<Self>) -> Self {
-        Self { props }
+    fn create(_ctx: &Context<Self>) -> Self {
+        Self
     }
 
-    fn update(&mut self, _msg: Self::Message) -> ShouldRender {
-        false
-    }
-
-    fn change(&mut self, props: Self::Properties) -> ShouldRender {
-        self.props.neq_assign(props)
-    }
-
-    fn view(&self) -> Html {
-        let msg = &self.props.message;
+    fn view(&self, ctx: &Context<Self>) -> Html {
+        let msg = &ctx.props().message;
         let mut pos = (0, 0);
 
         let parts = msg.emotes.iter().map(|e| {
+            let id = e.id;
             let srcset = format!(
-                "{},{},{}",
-                format!("https://static-cdn.jtvnw.net/emoticons/v1/{}/1.0 1x", e.id),
-                format!("https://static-cdn.jtvnw.net/emoticons/v1/{}/2.0 2x", e.id),
-                format!("https://static-cdn.jtvnw.net/emoticons/v1/{}/3.0 4x", e.id)
+                "\
+                https://static-cdn.jtvnw.net/emoticons/v1/{id}/1.0 1x,\
+                https://static-cdn.jtvnw.net/emoticons/v1/{id}/2.0 2x,\
+                https://static-cdn.jtvnw.net/emoticons/v1/{id}/3.0 4x\
+                ",
             );
 
             // BetterTTV
@@ -104,7 +95,7 @@ impl Component for Line {
 
         html! {
             <div class="msg">
-                <span style=color_style>{&msg.username}</span>
+                <span style={color_style}>{&msg.username}</span>
                 <span>{":"}</span>
                 {for parts}
                 <span>{&msg.message[pos.1..]}</span>

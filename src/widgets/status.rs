@@ -1,41 +1,37 @@
-use yew::{prelude::*, services::websocket::WebSocketStatus};
-use yewtil::NeqAssign;
+use yew::prelude::*;
 
-pub struct Status {
-    props: Props,
-}
+pub struct Status;
 
 #[derive(Clone, PartialEq, Properties)]
 pub struct Props {
     pub status: WebSocketStatus,
 }
 
+#[allow(clippy::module_name_repetitions)]
+#[derive(Clone, Copy, PartialEq)]
+pub enum WebSocketStatus {
+    Open,
+    Closed,
+    Error,
+}
+
 impl Component for Status {
     type Message = ();
-
     type Properties = Props;
 
-    fn create(props: Self::Properties, _link: ComponentLink<Self>) -> Self {
-        Self { props }
+    fn create(_ctx: &Context<Self>) -> Self {
+        Self
     }
 
-    fn update(&mut self, _msg: Self::Message) -> ShouldRender {
-        false
-    }
-
-    fn change(&mut self, props: Self::Properties) -> ShouldRender {
-        self.props.neq_assign(props)
-    }
-
-    fn view(&self) -> Html {
-        let status_color = match self.props.status {
+    fn view(&self, ctx: &Context<Self>) -> Html {
+        let status_color = match ctx.props().status {
+            WebSocketStatus::Open => "is-success",
             WebSocketStatus::Closed => "is-warning",
-            WebSocketStatus::Opened => "is-success",
             WebSocketStatus::Error => "is-danger",
         };
 
         html! {
-            <div class=classes!("status", status_color)></div>
+            <div class={classes!("status", status_color)}></div>
         }
     }
 }
