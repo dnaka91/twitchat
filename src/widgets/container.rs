@@ -28,7 +28,7 @@ impl Component for Container {
         true
     }
 
-    fn view(&self,ctx:&Context<Self>) -> Html {
+    fn view(&self, ctx: &Context<Self>) -> Html {
         let color_class = match ctx.props().color {
             Color::White => "color-white",
             Color::Black => "color-black",

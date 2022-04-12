@@ -3,10 +3,9 @@ use std::{collections::VecDeque, rc::Rc};
 use anyhow::Result;
 use futures_channel::mpsc::UnboundedSender;
 use futures_util::{SinkExt, StreamExt};
+use gloo_net::websocket::{futures::WebSocket, Message as WsMessage};
 use irc_proto::{error::ProtocolError, Message};
 use log::error;
-use reqwasm::websocket::futures::WebSocket;
-use reqwasm::websocket::Message as WsMessage;
 use wasm_bindgen_futures::spawn_local;
 use yew::prelude::*;
 
