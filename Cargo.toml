@@ -5,18 +5,18 @@ authors = ["Dominik Nakamura <dnaka91@gmail.com>"]
 edition = "2021"
 
 [dependencies]
-anyhow = "1.0.56"
+anyhow = "1.0.66"
 console_error_panic_hook = "0.1.7"
 console_log = "0.2.0"
-futures-channel = "0.3.21"
-futures-util = { version = "0.3.21", features = ["sink"] }
-gloo-net = { version = "0.1.0", default-features = false, features = ["websocket"] }
-gloo-utils = "0.1.2"
+futures-channel = "0.3.25"
+futures-util = { version = "0.3.25", features = ["sink"] }
+gloo-net = { version = "0.2.4", default-features = false, features = ["websocket"] }
+gloo-utils = "0.1.5"
 irc-proto = { version = "0.15.0", default-features = false }
-log = { version = "0.4.16", features = ["release_max_level_info"] }
-serde = { version = "1.0.136", features = ["derive"] }
-serde_qs = "0.9.1"
-wasm-bindgen-futures = "0.4.30"
+log = { version = "0.4.17", features = ["release_max_level_info"] }
+serde = { version = "1.0.147", features = ["derive"] }
+serde_qs = "0.10.1"
+wasm-bindgen-futures = "0.4.33"
 yew = "0.19.3"
 
 [profile.release]

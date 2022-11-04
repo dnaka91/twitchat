@@ -6,7 +6,7 @@ use crate::models::Privmsg;
 
 pub struct Line;
 
-#[derive(Clone, PartialEq, Properties)]
+#[derive(Clone, PartialEq, Eq, Properties)]
 pub struct Props {
     pub message: Rc<Privmsg>,
 }

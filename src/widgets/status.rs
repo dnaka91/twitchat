@@ -2,13 +2,13 @@ use yew::prelude::*;
 
 pub struct Status;
 
-#[derive(Clone, PartialEq, Properties)]
+#[derive(Clone, PartialEq, Eq, Properties)]
 pub struct Props {
     pub status: WebSocketStatus,
 }
 
 #[allow(clippy::module_name_repetitions)]
-#[derive(Clone, Copy, PartialEq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub enum WebSocketStatus {
     Open,
     Closed,

@@ -3,7 +3,7 @@ use std::rc::Rc;
 use irc_proto::{Command, Message, Prefix};
 use serde::Deserialize;
 
-#[derive(Copy, Clone, PartialEq, Deserialize)]
+#[derive(Copy, Clone, PartialEq, Eq, Deserialize)]
 #[serde(rename_all = "snake_case")]
 pub enum Color {
     White,
@@ -31,13 +31,13 @@ const fn default_font_size() -> f32 {
     16.0
 }
 
-#[derive(Clone, PartialEq)]
+#[derive(Clone, PartialEq, Eq)]
 pub enum TwitchMessage {
     Privmsg(Privmsg),
     Ping(String),
 }
 
-#[derive(Clone, PartialEq)]
+#[derive(Clone, PartialEq, Eq)]
 pub struct Privmsg {
     pub id: Rc<str>,
     pub username: String,
@@ -83,7 +83,7 @@ pub fn parse_message(message: Message) -> Option<TwitchMessage> {
     }
 }
 
-#[derive(Clone, PartialEq)]
+#[derive(Clone, PartialEq, Eq)]
 #[cfg_attr(test, derive(Debug))]
 pub struct Emote2 {
     pub id: u32,
