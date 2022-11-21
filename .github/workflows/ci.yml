@@ -18,7 +18,7 @@ jobs:
           toolchain: stable
           override: true
       - name: Configure cache
-        uses: Swatinem/rust-cache@v1
+        uses: Swatinem/rust-cache@v2
       - name: Prepare binary folder
         run: |
           mkdir -p $HOME/.local/bin
