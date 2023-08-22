@@ -1,3 +1,6 @@
+[advisories]
+ignore = ["RUSTSEC-2021-0153"]
+
 [licenses]
 allow = [
     "CC0-1.0",
@@ -6,10 +9,17 @@ allow = [
 allow-osi-fsf-free = "both"
 exceptions = [
     { name = "twitchat", allow = ["AGPL-3.0"] },
+    { name = "unicode-ident", allow = ["Unicode-DFS-2016"] },
 ]
 
 [bans]
 wildcards = "deny"
 skip = [
-    { name = "cfg-if", version = "=0.1.10" },
+    { name = "base64", version = "0.13" },
+    { name = "gloo-net", version = "0.2" },
+    { name = "gloo-utils", version = "0.1" },
+    { name = "hashbrown", version = "0.12" },
+    { name = "indexmap", version = "1" },
+    { name = "socket2", version = "0.4" },
+    { name = "syn", version = "1" },
 ]
