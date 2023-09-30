@@ -4,9 +4,7 @@ use anyhow::Result;
 use futures_util::{SinkExt, StreamExt};
 use gloo_net::websocket::{futures::WebSocket, Message as WsMessage};
 use irc_proto::{error::ProtocolError, Message};
-use leptos::{
-    component, create_signal, view, IntoView, SignalSet, SignalUpdate, WriteSignal,
-};
+use leptos::{component, create_signal, view, IntoView, SignalSet, SignalUpdate, WriteSignal};
 use log::error;
 use wasm_bindgen::UnwrapThrowExt;
 use wasm_bindgen_futures::spawn_local;
@@ -29,18 +27,14 @@ pub fn app() -> impl IntoView {
         .and_then(|s| serde_qs::from_str::<Options>(s).ok())
         .unwrap_or_default();
 
-    let (status, set_status) = create_signal( WebSocketStatus::Closed);
+    let (status, set_status) = create_signal(WebSocketStatus::Closed);
     let (messages, set_messages) = create_signal(VecDeque::with_capacity(BUFFER_SIZE));
 
     connect(options.channels, set_status, set_messages);
 
     view! {
-        <Status status={status.into()} />
-        <Container
-            messages={messages.into()}
-            color={options.color}
-            font_size={options.font_size}
-        />
+        <Status status=status/>
+        <Container messages=messages color=options.color font_size=options.font_size/>
     }
 }
 

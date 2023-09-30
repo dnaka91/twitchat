@@ -89,15 +89,16 @@ pub fn line(message: Rc<Privmsg>) -> impl IntoView {
             <span style:color=msg.color.clone()>{message.username.clone()}</span>
             <span>{":"}</span>
             <For
-                each={move || parts.get().0}
-                key={move |part| part.0}
-                children={move |(_, msg, srcset)| {
+                each=move || parts.get().0
+                key=move |part| part.0
+                children=move |(_, msg, srcset)| {
                     view! {
                         <span>{msg}</span>
-                        <img srcset={srcset} />
+                        <img srcset=srcset/>
                     }
-                }}
+                }
             />
+
             <span>{move || parts.get().1}</span>
         </div>
     }

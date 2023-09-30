@@ -9,14 +9,13 @@ pub enum WebSocketStatus {
 }
 
 #[component]
-pub fn status(status: Signal<WebSocketStatus>) -> impl IntoView {
+pub fn status(#[prop(into)] status: Signal<WebSocketStatus>) -> impl IntoView {
     view! {
         <div
             class="status"
-            class:is-success={move || status.get() == WebSocketStatus::Open}
-            class:is-warning={move || status.get() == WebSocketStatus::Closed}
-            class:is-danger={move || status.get() == WebSocketStatus::Error}
-        >
-        </div>
+            class:is-success=move || status.get() == WebSocketStatus::Open
+            class:is-warning=move || status.get() == WebSocketStatus::Closed
+            class:is-danger=move || status.get() == WebSocketStatus::Error
+        ></div>
     }
 }
