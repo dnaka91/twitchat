@@ -13,9 +13,9 @@ futures-util = { version = "0.3.28", features = ["sink"] }
 gloo-net = { version = "0.4.0", default-features = false, features = ["websocket"] }
 gloo-utils = "0.2.0"
 irc-proto = { version = "0.15.0", default-features = false }
-leptos = { version = "0.5.0-beta", features = ["csr"] }
+leptos = { version = "0.5.0", features = ["csr"] }
 log = { version = "0.4.20", features = ["release_max_level_info"] }
-serde = { version = "1.0.185", features = ["derive"] }
+serde = { version = "1.0.188", features = ["derive"] }
 serde_qs = "0.12.0"
 wasm-bindgen = "0.2.87"
 wasm-bindgen-futures = "0.4.37"

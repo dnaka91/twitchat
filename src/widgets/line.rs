@@ -91,7 +91,7 @@ pub fn line(message: Rc<Privmsg>) -> impl IntoView {
             <For
                 each={move || parts.get().0}
                 key={move |part| part.0}
-                view={move |(_, msg, srcset)| {
+                children={move |(_, msg, srcset)| {
                     view! {
                         <span>{msg}</span>
                         <img srcset={srcset} />

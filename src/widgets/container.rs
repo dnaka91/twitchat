@@ -23,7 +23,7 @@ pub fn container(
             <For
                 each={move || messages.get()}
                 key={move |msg| Rc::clone(&msg.id)}
-                view={move |msg| view! { <Line message={msg} /> }}
+                children={move |msg| view! { <Line message={msg} /> }}
             />
         </div>
     }
