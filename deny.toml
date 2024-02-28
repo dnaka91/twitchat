@@ -1,22 +1,23 @@
 [advisories]
+version = 2
 ignore = ["RUSTSEC-2021-0153"]
 
 [licenses]
+version = 2
 allow = [
+    "Apache-2.0",
+    "BSL-1.0",
     "CC0-1.0",
+    "MIT",
     "MPL-2.0",
+    "Zlib",
 ]
-allow-osi-fsf-free = "both"
 exceptions = [
     { name = "twitchat", allow = ["AGPL-3.0"] },
     { name = "unicode-ident", allow = ["Unicode-DFS-2016"] },
 ]
 
 [bans]
-wildcards = "deny"
 skip = [
-    { name = "gloo-net", version = "0.2" },
-    { name = "gloo-utils", version = "0.1" },
-    { name = "itertools", version = "0.10" },
-    { name = "socket2", version = "0.4" },
+    { name = "http", version = "0.2" },
 ]

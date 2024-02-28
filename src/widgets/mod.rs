@@ -1,7 +1,7 @@
 pub use self::{
-    container::{Container, ContainerProps},
-    line::{Line, LineProps},
-    status::{Status, StatusProps, WebSocketStatus},
+    container::Container,
+    line::Line,
+    status::{Status, WebSocketStatus},
 };
 
 mod container;
